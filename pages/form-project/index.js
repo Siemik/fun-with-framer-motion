@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
-import { motion, MotionConfig } from "framer-motion"
-import useMeasure from "react-use-measure"
+import { useState, useEffect } from "react";
+import { motion, MotionConfig } from "framer-motion";
+import useMeasure from "react-use-measure";
 
 function Step({ step, currentStep }) {
   let status =
@@ -8,7 +8,7 @@ function Step({ step, currentStep }) {
       ? "active"
       : currentStep < step
       ? "inactive"
-      : "complete"
+      : "complete";
 
   return (
     <div className="relative">
@@ -72,7 +72,7 @@ function Step({ step, currentStep }) {
         </div>
       </motion.div>
     </div>
-  )
+  );
 }
 
 function CheckIcon(props) {
@@ -98,27 +98,27 @@ function CheckIcon(props) {
         d="M5 13l4 4L19 7"
       />
     </svg>
-  )
+  );
 }
 
 export default function Page() {
-  const [step, setStep] = useState(1)
-  const [isChecked, setIsChecked] = useState(false)
-  const [isSended, setIsSended] = useState(false)
-  const [ref, { height }] = useMeasure()
+  const [step, setStep] = useState(1);
+  const [isChecked, setIsChecked] = useState(false);
+  const [isSended, setIsSended] = useState(false);
+  const [ref, { height }] = useMeasure();
 
   useEffect(() => {
     // Update the document title using the browser API
     if (step < 5) {
-      setIsChecked(false)
+      setIsChecked(false);
     }
   }),
-    [step]
+    [step];
 
   function hendleButton() {
-    setStep(step > 4 ? step : step + 1)
+    setStep(step > 4 ? step : step + 1);
     if (step > 4 && isChecked) {
-      setIsSended(true)
+      setIsSended(true);
     }
   }
 
@@ -160,7 +160,7 @@ export default function Page() {
                 <motion.button
                   onClick={() => setStep(step < 2 ? step : step - 1)}
                   className="rounded px-2 py-1 text-stone-400 hover:text-stone-700"
-                  animate={{ opacity: isSended ? 0 : 1 }}
+                  animate={{ opacity: isSended || step === 1 ? 0 : 1 }}
                 >
                   Cofnij
                 </motion.button>
@@ -232,5 +232,5 @@ export default function Page() {
         </motion.div>
       </div>
     </MotionConfig>
-  )
+  );
 }
